@@ -81,12 +81,10 @@ async function createMovie(params) {
     const movie = new Movie({
         title: params.title,
         director: params.director,
-        price: params.price
+        price: params.price,
+        description: params.description,
+        inStock: params.inStock
     });
-
-    if (params.description) {
-        movie.description = params.description;
-    }
 
     await movie.save();
 
@@ -96,17 +94,20 @@ async function createMovie(params) {
 async function updateMovie(id, params) {
     const movie = await getMovie(id);
 
-    if(!params.title) {
+    if (!params.title) {
         params.title = movie.title;
     }
-    if(!params.director) {
+    if (!params.director) {
         params.director = movie.director;
     }
-    if(!params.price) {
+    if (!params.price) {
         params.price = movie.price;
     }
-    if(!params.description) {
+    if (!params.description) {
         params.description = movie.description;
+    }
+    if (!params.inStock) {
+        params.inStock = movie.inStock;
     }
 
     validate(params);
@@ -115,7 +116,8 @@ async function updateMovie(id, params) {
         title: params.title,
         director: params.director,
         price: params.price,
-        description: params.description
+        description: params.description,
+        inStock: params.inStock
     });
 
     await movie.save();

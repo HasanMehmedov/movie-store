@@ -21,6 +21,12 @@ const movieSchema = new mongoose.Schema({
     },
     decription: {
         type: String
+    },
+    inStock: {
+        type: Number,
+        required: true,
+        default: 0,
+        positive: true
     }
 });
 
@@ -31,7 +37,8 @@ function validateMovie(movie) {
         title: Joi.string().min(2).max(100).required(),
         director: Joi.string().min(5).max(255).required(),
         price: Joi.number().positive().required(),
-        description: Joi.string()
+        description: Joi.string(),
+        inStock: Joi.number().positive().required()
     }
 
     const { error } = Joi.validate(movie, validationSchema);
