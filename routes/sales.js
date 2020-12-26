@@ -80,7 +80,9 @@ async function createSale(params) {
     const movie = await getMovie(movieId);
 
     if (movie.inStock === 0) {
-        throw new Error('Movie\'s out of stock.');
+        const outOfStockError = new Error('Movie\'s out of stock.');
+        outOfStockError.status = 200;
+        throw outOfStockError;
     }
 
     const sale = new Sale({
