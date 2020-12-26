@@ -19,7 +19,9 @@
   "homepage": "https://github.com/HasanMehmedov/rental-movies-store#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "fawn": "^2.1.5",
     "joi": "^13.1.0",
+    "joi-objectid": "^3.0.1",
     "mongoose": "^5.11.8"
   }
 }
